@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        component = DaggerTestComponent.builder().testModule(new TestModule()).build();
+        component.inject(this);
 
+        if (testModel != null) {
+            Log.d("TTest", "DI is ok");
+        }
     }
 
     @Override
